@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>qwicknote</title>
+    <link href="static/style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"
+    />
+    <link rel="icon" href="/static/favicon.png" />
+  </head>
+  <body
+    class="bg-gradient-to-br from-orange-600 via-pink-700 to-purple-800 min-h-screen"
+    un-cloak
+  >
+    <header>
+      <h1 class="text-center">qwicknote</h1>
+    </header>
+    <main>
+      <form action="/add" method="post">
+        <fieldset role="group">
+          <input
+            type="text"
+            name="content"
+            placeholder="add a note..."
+            autofocus
+          />
+          <button type="submit">add</button>
+        </fieldset>
+      </form>
+      {%if not entries%}
+      <small class="text-center block color-[#f0f1f3]">no notes yet...</small>
+      {%endif%} {%for el in entries%}
+      <article class="flex gap-4">
+        <div class="flex-1">
+          <p class="text-justify">{{el.content | safe}}</p>
+          <small class="color-[#8891a4]">{{el.inserted}}</small>
+        </div>
+        <form action="/remove" method="POST" class="my-auto">
+          <input type="text" name="id" value="{{el.id}}" class="hidden" />
+          <button type="submit" class="bg-red-800">delete</button>
+        </form>
+      </article>
+      {%endfor%}
+    </main>
+  </body>
+</html>

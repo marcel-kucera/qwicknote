@@ -23,4 +23,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 ENTRYPOINT []
 
 # Run server
-CMD ["gunicorn","-b","0.0.0.0","app:app"]
+CMD ["gunicorn","-b","0.0.0.0","--workers=6","app:app"]

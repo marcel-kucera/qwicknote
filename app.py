@@ -8,7 +8,7 @@ from markupsafe import escape
 
 from flask import g
 
-DATABASE = "db"
+DATABASE = os.environ.get("QWICKNOTE_DATABASE") or "db"
 USERNAME = os.environ.get("QWICKNOTE_USERNAME") or "marcel"
 PASSWORD = os.environ.get("QWICKNOTE_PASSWORD") or "dong"
 
